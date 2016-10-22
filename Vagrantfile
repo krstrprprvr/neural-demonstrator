@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
     cd /var/www/mud-neuron
     ln -s /home/vagrant/node_modules/ node_modules
     npm install brain.js
-    sudo npm install https://github.com/ApelSYN/mnist
+    npm install https://github.com/ApelSYN/mnist
+    npm install webpack --save-dev
   SHELL
 end
