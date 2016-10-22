@@ -1,10 +1,21 @@
-var brain = require('brain.js');
+const brain = require('brain.js');
 var net = new brain.NeuralNetwork();
+const fs = require('fs');
+const mnist = require('mnist');
+const set = mnist.set(1000, 0);
+const trainingSet = set.training;
+net.train(trainingSet,
+    {
+        errorThresh: 0.005,  // error threshold to reach
+        iterations: 20000,   // maximum training iterations
+        log: true,           // console.log() progress periodically
+        logPeriod: 1,       // number of iterations between logging
+        learningRate: 0.3    // learning rate
+    }
+);
 
-net.train([{input: [0, 0], output: [0]},
-    {input: [0, 1], output: [1]},
-    {input: [1, 0], output: [1]},
-    {input: [1, 1], output: [0]}]);
+var wstream = fs.createWriteStream('./../data/mnistTrain.json');
+wstream.write(JSON.stringify(net.toJSON(),null,2));
+wstream.end();
 
-var output = net.run([1, 0]);  // [0.987]
-console.log(output);
+console.log('MNIST dataset with Brain.js train done.')

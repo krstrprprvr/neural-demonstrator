@@ -12,10 +12,12 @@ Vagrant.configure(2) do |config|
     apt-get install -y g++
     curl -sL https://deb.nodesource.com/setup_0.12 | sh
     apt-get install -y nodejs
+    apt-get install -y git
     su vagrant
     mkdir /home/vagrant/node_modules
     cd /var/www/project
     ln -s /home/vagrant/node_modules/ node_modules
     npm install brain.js
+    sudo npm install https://github.com/ApelSYN/mnist
   SHELL
 end
