@@ -14,7 +14,7 @@ net.train(trainingSet,
     }
 );
 
-var wstream = fs.createWriteStream('./../data/mnistTrain.json');
+var wstream = fs.createWriteStream('./mnistTrain.json');
 wstream.write(JSON.stringify(net.toJSON(),null,2));
 wstream.end();
 
